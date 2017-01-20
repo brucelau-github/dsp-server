@@ -43,7 +43,8 @@ function _assertExists(id, entity) {
  */
 function* _validateMission(values) {
   if (values.mission) {
-    const MissionService = new require('./MissionService');
+    const MissionService = require('./MissionService');
+
     yield MissionService.getSingle(values.mission);
   }
   if (values.isPermanent) {

@@ -22,6 +22,7 @@ const Question = require('../models').Question;
 const errors = require('common-errors');
 const ObjectId = require('mongoose').Types.ObjectId;
 const DroneService = require('./DroneService');
+const NoFlyZoneService = require('./NoFlyZoneService');
 
 // Exports
 module.exports = {
@@ -38,6 +39,7 @@ module.exports = {
   getPilotChecklist,
   updatePilotChecklist,
   fetchPilotMissions,
+  loadMissionToDrone,
 };
 
 // the joi schema for search
@@ -438,3 +440,37 @@ function* fetchPilotMissions(pilotId, entity) {
     items: _.map(docs, (d) => (_.pick(d.toObject(), ['id', 'missionName', 'status']))),
   };
 }
+
+/**
+ * Load Mission to Drone
+ *
+ * @param   {String}   id    drone id
+ * @param   {Object}   entity     parameters of request: limit, offset, sortBy
+ * @return  {Object}   a temprory no filght zone NoFlyZone
+ */
+function* loadMissionToDrone(id) {
+  // create temporary NoFlyZone with NoFlyZone.startTime = currentTime and NoFlyZone.endTime = currentTime + duration;
+  const mission = yield Mission.findOne({_id: id});
+  var allZones = mission.zones;
+  var now = new Date();
+  var startTime = now.toISOString();
+  var duration = 1000*60*60*24 //in ms, 1000*60*60*24 = 24 hours
+  var endTime = new Date(now.getTime() + duration).toISOString();
+  var ret = [];
+
+  for(var i=0; i < allZones.length; i++) {
+    //add  temporary NoFlyZone.
+    ret.push(yield NoFlyZoneService.create({
+      "location": allZones[i].location,
+      "startTime": startTime,
+      "endTime": endTime,
+      "mission": id,
+      "description": allZones[i].description,
+      "style": allZones[i].style,
+      "isActive": true,
+      "isPermanent": false,
+    }));
+  }
+  return ret;
+}
+

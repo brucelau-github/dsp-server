@@ -26,6 +26,7 @@ module.exports = {
   getPilotChecklist,
   updatePilotChecklist,
   fetchPilotMissions,
+  loadmission,
 };
 
 /**
@@ -130,4 +131,14 @@ function* updatePilotChecklist(req, res) {
  */
 function* fetchPilotMissions(req, res) {
   res.json(yield MissionService.fetchPilotMissions(req.auth.sub, req.query));
+}
+
+/**
+ * Load mission to drones
+ *
+ * @param req the request
+ * @param res the response
+ */
+function* loadmission(req, res) {
+  res.json(yield MissionService.loadMissionToDrone(req.params.id));
 }

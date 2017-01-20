@@ -155,6 +155,13 @@ module.exports = {
       method: 'download',
     },
   },
+  '/missions/:id/loadmission': {
+    post: {
+      controller: 'MissionController',
+      middleware: [auth()],
+      method: 'loadmission',
+    },
+  },
   '/missions/:id/review': {
     post: {
       controller: 'ReviewController',
