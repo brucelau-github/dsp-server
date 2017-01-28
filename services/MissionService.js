@@ -444,13 +444,15 @@ function* fetchPilotMissions(pilotId, entity) {
 /**
  * Load Mission to Drone
  *
- * @param   {String}   id    drone id
- * @param   {Object}   entity     parameters of request: limit, offset, sortBy
- * @return  {Object}   a temprory no filght zone NoFlyZone
+ * @param   {String}   id    mission id
+ * @return  [array]   an array of temprory no filght zone NoFlyZone
  */
 function* loadMissionToDrone(id) {
   // create temporary NoFlyZone with NoFlyZone.startTime = currentTime and NoFlyZone.endTime = currentTime + duration;
   const mission = yield Mission.findOne({_id: id});
+  if (!mission) {
+    throw new errors.NotFoundError(`mission not found with specified id ${id}`);
+  }
   var allZones = mission.zones;
   var now = new Date();
   var startTime = now.toISOString();
