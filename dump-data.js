@@ -30,7 +30,7 @@ const co = require('co');
 co(function*() {
   logger.info('deleting previous data');
   yield User.remove({});
-  // yield ServiceRequest.remove({});
+  yield ServiceRequest.remove({});
 
     // encrypt password
   yield _.map(users, (u) => function* () {
@@ -42,6 +42,7 @@ co(function*() {
 
   logger.info(`creating ${users.length} users`);
   const userDocs = yield User.create(users);
+  
   logger.info(`creating ${serviceRequests.length} serviceRequests`);
   const serviceRequestDoc = yield ServiceRequest.create(serviceRequests);
 

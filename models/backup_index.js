@@ -88,6 +88,11 @@ const QuestionSchema = require('./Question').QuestionSchema;
 
 const Question = db.model('Question', QuestionSchema);
 
+// Question model
+const QuestionSchema = require('./Question').QuestionSchema;
+
+const Question = db.model('Question', QuestionSchema);
+
 module.exports = {
   Drone,
   DronePosition,

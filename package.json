@@ -8,7 +8,7 @@
     "watch": "nodemon app.js",
     "lint": "eslint *.js **/*.js || true",
     "lint:fix": "eslint *.js **/*.js --fix || true",
-    "testdata": "node generate-test-data.js",
+    "testdata": "node dump-data.js",
     "testdata-performance": "node generate-test-data.js drones-within-area"
   },
   "author": "TCSCODER",
