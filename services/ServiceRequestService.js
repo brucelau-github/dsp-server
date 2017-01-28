@@ -35,11 +35,12 @@ getAll.schema = {
     offset: joi.number().integer(),
     description: joi.string().min(1).max(100),
     street: joi.string().min(1).max(100),
+    ward: joi.number().integer(),
     start_date: joi.date(),
     end_date: joi.date(),
     block: joi.number().integer(),
     limit: joi.number().integer().required(),
-    sortBy: joi.string().valid(['department', 'method_received', '-created_date', 'block']),
+    sortBy: joi.string().valid(['department', 'method_received', '-created_date', 'block','street','ward']),
   	queryType: joi.string().valid(['fuzzy']),
   }).required(),
 };
@@ -63,7 +64,10 @@ function* getAll(entity) {
   }
   if (!_.isNil(entity.block)) {
     criteria.block = entity.block;
-  }  
+  }
+  if (!_.isNil(entity.ward)) {
+    criteria.ward = entity.ward;
+  }
   if (!_.isNil(entity.description)) {
     criteria.description = entity.description;
   } 
