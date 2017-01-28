@@ -27,16 +27,5 @@ Joi.geoJSON = () => Joi.object({
 });
 
 // build all services
-logger.buildService(require('./services/DroneService'));
-logger.buildService(require('./services/MissionService'));
 logger.buildService(require('./services/UserService'));
-logger.buildService(require('./services/CategoryService'));
-logger.buildService(require('./services/ProviderService'));
-logger.buildService(require('./services/PackageService'));
-logger.buildService(require('./services/ReviewService'));
-logger.buildService(require('./services/PackageRequestService'));
-logger.buildService(require('./services/SavedPackageService'));
-logger.buildService(require('./services/NotificationService'));
-logger.buildService(require('./services/ServiceServices'));
-logger.buildService(require('./services/DronePositionService'));
-logger.buildService(require('./services/NoFlyZoneService'));
+logger.buildService(require('./services/ServiceRequestService'));

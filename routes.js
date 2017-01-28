@@ -39,7 +39,7 @@ module.exports = {
       controller: 'UserController',
       method: 'resetPassword',
     },
-  }
+  },
   //add service Request feature
   '/servicerequests': {
     get: {
@@ -47,9 +47,10 @@ module.exports = {
       method: 'getAll',
     },
   },
-  '/servicerequests/:id': {
-    get: {
-      controller: 'DroneController',
-      method: 'getSingle',
-    },
+	'/servicerequests/:id': {
+	    get: {
+	      controller: 'DroneController',
+	      method: 'getSingle',
+	    }
+,	}
 };
