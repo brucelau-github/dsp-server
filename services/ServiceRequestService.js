@@ -35,7 +35,8 @@ getAll.schema = {
     offset: joi.number().integer(),
     description: joi.string().min(1).max(100),
     street: joi.string().min(1).max(100),
-    created_date: joi.date(),
+    start_date: joi.date(),
+    end_date: joi.date(),
     block: joi.number().integer(),
     limit: joi.number().integer().required(),
     sortBy: joi.string().valid(['department', 'method_received', '-created_date', 'block']),
@@ -54,6 +55,11 @@ function* getAll(entity) {
   	criteria.street = new RegExp('.*'+entity.street+'.*', "i");
   } else if (!_.isNil(entity.street)) {
     criteria.street = entity.street;
+  }
+  if (!_.isNil(entity.start_date) && !_.isNil(entity.end_date)) {
+    const start_date = new Date(entity.start_date);
+    const end_date = new Date(entity.end_date);
+    criteria.created_date = { $gte: start_date, $lte: end_date };
   }
   if (!_.isNil(entity.block)) {
     criteria.block = entity.block;

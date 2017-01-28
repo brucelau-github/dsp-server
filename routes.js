@@ -49,7 +49,7 @@ module.exports = {
   },
 	'/servicerequests/:id': {
 	    get: {
-	      controller: 'DroneController',
+	      controller: 'ServiceRequestController',
 	      method: 'getSingle',
 	    }
 ,	}

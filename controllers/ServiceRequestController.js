@@ -39,5 +39,5 @@ function* getAll(req, res) {
  * @param res
  */
 function * getSingle(req, res) {
-  res.json(yield DroneService.getSingle(req.params.id));
+  res.json(yield ServiceRequestService.getSingle(req.params.id));
 }
