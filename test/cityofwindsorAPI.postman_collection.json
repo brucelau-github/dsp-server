@@ -1,0 +1,310 @@
+{
+	"variables": [],
+	"info": {
+		"name": "cityofwindsorAPI",
+		"_postman_id": "00851cd1-f1f2-9cbd-22ec-5fac8cdeef2d",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "limit and offset",
+			"request": {
+				"url": "{{URL}}/servicerequests?limit=10&offset=2",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{TOKEN}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"email\":\"2427546644@qq.com\"}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "limit and offset page",
+			"request": {
+				"url": "{{URL}}/servicerequests?limit=10&offset=2&sortBy=-created_date&department=Inspections",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{TOKEN}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"email\":\"2427546644@qq.com\"}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "SR page sortBy",
+			"request": {
+				"url": "{{URL}}/servicerequests?limit=10&offset=2&sortBy=-created_date",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{TOKEN}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"email\":\"2427546644@qq.com\"}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "fuzzy query",
+			"request": {
+				"url": "{{URL}}/servicerequests?limit=10&queryType=fuzzy&street=Jeff",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{TOKEN}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"email\":\"2427546644@qq.com\"}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "serviceRequest get one",
+			"request": {
+				"url": "{{URL}}/servicerequests/588cb3d82f16bd15f1a37169",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{TOKEN}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"email\":\"2427546644@qq.com\"}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "page createdate",
+			"request": {
+				"url": "{{URL}}/servicerequests?limit=10&offset=2&start_date=2016-10-01&end_date=2016-12-01",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{TOKEN}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"email\":\"2427546644@qq.com\"}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "request auth query",
+			"request": {
+				"url": "{{URL}}/sec-servicerequests",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{TOKEN}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"email\":\"2427546644@qq.com\"}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "normal login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"TOKEN\", jsonData.accessToken);"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{URL}}/login",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"email\":\"brucelau.email@gmail.com\",\"password\":\"123456\"}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "socail login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"TOKEN\", jsonData.accessToken);"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "{{URL}}/login/social",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"email\":\"topcoder@gmail.com\",\"name\":\"123456\"}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "register",
+			"request": {
+				"url": "{{URL}}/register",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"email\":\"provider1@gmail.com\",\"password\":\"123456\",\"firstName\":\"John\", \"lastName\":\"Rick\",\"phone\":\"6084022\"}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "forget password",
+			"request": {
+				"url": "{{URL}}/forgot-password",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"email\":\"topcoder@gmail.com\"}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "reset password",
+			"request": {
+				"url": "{{URL}}/reset-password",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"email\":\"topcoder@gmail.com\", \"code\":\"c42b\", \"password\":\"123456\"}"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

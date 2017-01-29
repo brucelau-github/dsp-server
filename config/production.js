@@ -17,7 +17,7 @@ module.exports = {
   SALT_WORK_FACTOR: 2,
   TOKEN_EXPIRES: 10 * 60 * 60,
   db: {
-    url: process.env.MONGOLAB_URI || 'mongodb://localhost:27017/drones',
+    url: process.env.MONGOLAB_URI || 'mongodb://localhost:27017/citiyofwindsor',
     poolSize: 5,
   },
 };

@@ -51,6 +51,13 @@ module.exports = {
 	    get: {
 	      controller: 'ServiceRequestController',
 	      method: 'getSingle',
-	    }
-,	}
+	    },
+	},
+  '/sec-servicerequests': {
+    get: {
+      controller: 'ServiceRequestController',
+      middleware: [auth()],
+      method: 'getAll',
+    },
+  },
 };

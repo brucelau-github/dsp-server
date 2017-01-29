@@ -35,11 +35,13 @@ getAll.schema = {
     offset: joi.number().integer(),
     description: joi.string().min(1).max(100),
     street: joi.string().min(1).max(100),
+    department: joi.string().min(1).max(100),
+    method_received: joi.string().min(1).max(100),
     ward: joi.number().integer(),
     start_date: joi.date(),
     end_date: joi.date(),
     block: joi.number().integer(),
-    limit: joi.number().integer().required(),
+    limit: joi.number().integer(),
     sortBy: joi.string().valid(['department', 'method_received', '-created_date', 'block','street','ward']),
   	queryType: joi.string().valid(['fuzzy']),
   }).required(),
@@ -57,20 +59,32 @@ function* getAll(entity) {
   } else if (!_.isNil(entity.street)) {
     criteria.street = entity.street;
   }
+
   if (!_.isNil(entity.start_date) && !_.isNil(entity.end_date)) {
     const start_date = new Date(entity.start_date);
     const end_date = new Date(entity.end_date);
     criteria.created_date = { $gte: start_date, $lte: end_date };
   }
+
   if (!_.isNil(entity.block)) {
     criteria.block = entity.block;
   }
+
+  if (!_.isNil(entity.department)) {
+    criteria.department = entity.department;
+  }
+
   if (!_.isNil(entity.ward)) {
     criteria.ward = entity.ward;
+  }  
+  if (!_.isNil(entity.method_received)) {
+    criteria.method_received = entity.method_received;
   }
+
   if (!_.isNil(entity.description)) {
     criteria.description = entity.description;
   } 
+
   if (!_.isNil(entity.sortBy)) {
     const name = entity.sortBy[0] === '-' ? entity.sortBy.substr(1) : entity.sortBy;
     const value = entity.sortBy[0] === '-' ? -1 : 1;

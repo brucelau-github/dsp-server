@@ -12,7 +12,7 @@
 
 module.exports = {
   db: {
-    url: 'mongodb://localhost:27017/drones_test',
+    url: 'mongodb://localhost:27017/cityofwindsor',
     poolSize: 5,
   },
 };
