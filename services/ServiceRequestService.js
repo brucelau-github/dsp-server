@@ -43,7 +43,6 @@ getAll.schema = {
     block: joi.number().integer(),
     limit: joi.number().integer(),
     sortBy: joi.string().valid(['department', 'method_received', '-created_date', 'block','street','ward']),
-  	queryType: joi.string().valid(['fuzzy']),
   }).required(),
 };
 
@@ -54,7 +53,7 @@ function* getAll(entity) {
   const criteria = {};
   const sortBy = {};
 
-  if(!_.isNil(entity.queryType) && entity.queryType === 'fuzzy') {
+  if(!_.isNil(entity.street)) {
   	criteria.street = new RegExp('.*'+entity.street+'.*', "i");
   } else if (!_.isNil(entity.street)) {
     criteria.street = entity.street;
